@@ -1,35 +1,39 @@
+var numberRand;
 var randomNumber = function () {
     var _a, _b;
     var numberStart = (_a = document.getElementById('numberStart')) === null || _a === void 0 ? void 0 : _a.value;
     var numberEnd = (_b = document.getElementById('numberEnd')) === null || _b === void 0 ? void 0 : _b.value;
     console.log('start: ' + numberStart + ' end: ' + numberEnd);
-    var randomNumber = Math.floor(Math.random() * (parseInt(numberEnd) - parseInt(numberStart) + 1)) + parseInt(numberStart);
-    console.log(randomNumber);
-    return randomNumber;
+    numberRand =
+        Math.floor(Math.random() * (parseInt(numberEnd) - parseInt(numberStart) + 1)) + parseInt(numberStart);
+    console.log(numberRand);
+    return numberRand;
 };
-var number = randomNumber();
-console.log('num', number);
+console.log('num', randomNumber());
 //if-else statement
 document.getElementById('count').innerText = '3';
+document.getElementById('endNum').innerText = '10';
+document.getElementById('numberEnd').value = '10';
 var guess = function () {
     var _a;
     var countOld = parseInt(document.getElementById('count').innerText);
     var num = parseInt((_a = document.getElementById('number')) === null || _a === void 0 ? void 0 : _a.value);
-    var count = parseInt((document.getElementById('count').innerText = String(countOld || 0 - 1)));
+    var count = parseInt((document.getElementById('count').innerText = String(countOld - 1)));
+    console.log('count: ' + count);
     if (count < 0) {
         return;
     }
-    if (num != number) {
+    if (num != numberRand) {
         if (count == 0) {
             alert('Game over');
             return;
         }
-        if (num > number) {
+        if (num > numberRand) {
             document.getElementById('number').value = '';
             document.getElementById('number').focus();
             alert('Sai rồi, số của bạn lớn quá');
         }
-        else if (num < number) {
+        else if (num < numberRand) {
             document.getElementById('number').value = '';
             document.getElementById('number').focus();
             alert('Sai rồi, số của bạn nhỏ quá');
@@ -50,22 +54,24 @@ var guess = function () {
     }
 };
 //Loop statement
-//document.getElementById('count')!.innerText = '10'
+// document.getElementById('count')!.innerText = '10';
+// document.getElementById('endNum')!.innerText = '100';
+// (document.getElementById('numberEnd') as HTMLInputElement).value = '100';
 // const guess = () => {
 //   let countOld = parseInt(document.getElementById('count')!.innerText);
 //   let num = parseInt(
 //     (document.getElementById('number') as HTMLInputElement)?.value
 //   );
 //   let count = parseInt(
-//     (document.getElementById('count')!.innerText = String(countOld || 0 - 1))
+//     (document.getElementById('count')!.innerText = String(countOld - 1))
 //   );
-//   for (let index = 0; index < count; index++) {
-//     if (num != number) {
-//       if (num > number) {
+//   for (let index = 0; index <= count; index++) {
+//     if (num != numberRand) {
+//       if (num > numberRand) {
 //         (document.getElementById('number') as HTMLInputElement).value = '';
 //         (document.getElementById('number') as HTMLInputElement).focus();
 //         alert('Sai rồi, số của bạn lớn quá');
-//       } else if (num < number) {
+//       } else if (num < numberRand) {
 //         (document.getElementById('number') as HTMLInputElement).value = '';
 //         (document.getElementById('number') as HTMLInputElement).focus();
 //         alert('Sai rồi, số của bạn nhỏ quá');

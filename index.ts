@@ -1,25 +1,27 @@
-const randomNumber = (): number => {
+var numberRand: number;
+
+const randomNumber = () => {
   let numberStart = (document.getElementById('numberStart') as HTMLInputElement)
     ?.value;
   let numberEnd = (document.getElementById('numberEnd') as HTMLInputElement)
     ?.value;
   console.log('start: ' + numberStart + ' end: ' + numberEnd);
-  let randomNumber: number =
+  numberRand =
     Math.floor(
       Math.random() * (parseInt(numberEnd) - parseInt(numberStart) + 1)
     ) + parseInt(numberStart);
 
-  console.log(randomNumber);
+  console.log(numberRand);
 
-  return randomNumber;
+  return numberRand;
 };
 
-let number = randomNumber();
-
-console.log('num', number);
+console.log('num', randomNumber());
 
 //if-else statement
-document.getElementById('count')!.innerText = '3'
+document.getElementById('count')!.innerText = '3';
+document.getElementById('endNum')!.innerText = '10';
+(document.getElementById('numberEnd') as HTMLInputElement).value = '10';
 const guess = () => {
   let countOld: number = parseInt(document.getElementById('count')!.innerText);
 
@@ -27,24 +29,25 @@ const guess = () => {
     (document.getElementById('number') as HTMLInputElement)?.value
   );
   let count = parseInt(
-    (document.getElementById('count')!.innerText = String(countOld || 0 - 1))
+    (document.getElementById('count')!.innerText = String(countOld - 1))
   );
 
+  console.log('count: ' + count);
   if (count < 0) {
     return;
   }
 
-  if (num != number) {
+  if (num != numberRand) {
     if (count == 0) {
       alert('Game over');
       return;
     }
 
-    if (num > number) {
+    if (num > numberRand) {
       (document.getElementById('number') as HTMLInputElement).value = '';
       (document.getElementById('number') as HTMLInputElement).focus();
       alert('Sai rồi, số của bạn lớn quá');
-    } else if (num < number) {
+    } else if (num < numberRand) {
       (document.getElementById('number') as HTMLInputElement).value = '';
       (document.getElementById('number') as HTMLInputElement).focus();
       alert('Sai rồi, số của bạn nhỏ quá');
@@ -66,9 +69,10 @@ const guess = () => {
   }
 };
 
-
 //Loop statement
-//document.getElementById('count')!.innerText = '10'
+// document.getElementById('count')!.innerText = '10';
+// document.getElementById('endNum')!.innerText = '100';
+// (document.getElementById('numberEnd') as HTMLInputElement).value = '100';
 // const guess = () => {
 //   let countOld = parseInt(document.getElementById('count')!.innerText);
 
@@ -76,16 +80,16 @@ const guess = () => {
 //     (document.getElementById('number') as HTMLInputElement)?.value
 //   );
 //   let count = parseInt(
-//     (document.getElementById('count')!.innerText = String(countOld || 0 - 1))
+//     (document.getElementById('count')!.innerText = String(countOld - 1))
 //   );
 
-//   for (let index = 0; index < count; index++) {
-//     if (num != number) {
-//       if (num > number) {
+//   for (let index = 0; index <= count; index++) {
+//     if (num != numberRand) {
+//       if (num > numberRand) {
 //         (document.getElementById('number') as HTMLInputElement).value = '';
 //         (document.getElementById('number') as HTMLInputElement).focus();
 //         alert('Sai rồi, số của bạn lớn quá');
-//       } else if (num < number) {
+//       } else if (num < numberRand) {
 //         (document.getElementById('number') as HTMLInputElement).value = '';
 //         (document.getElementById('number') as HTMLInputElement).focus();
 //         alert('Sai rồi, số của bạn nhỏ quá');
